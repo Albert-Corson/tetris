@@ -24,4 +24,8 @@
 
 void show_usage(void);
 
+patern_t *init_tetriminos(int argc, char const *argv[], vector_t map_size);
+tetris_t *init_tetris_var(int argc, char const *argv[]);
+void destroy_tetris_var(tetris_t *var);
+
 #endif /* !TETRIS_H_ */

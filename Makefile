@@ -5,8 +5,10 @@
 ## makefile
 ##
 
-SRC	=	src/main.c			\
-		src/usage.c			\
+SRC	=	src/main.c				\
+		src/usage.c				\
+		src/init_tetriminos.c	\
+		src/init_tetris_var.c	\
 
 OBJ	=	$(SRC:.c=.o)
 

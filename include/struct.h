@@ -14,6 +14,7 @@ typedef struct vector_s     vector_t;
 typedef struct tetris_s     tetris_t;
 typedef struct controls_s   controls_t;
 typedef struct game_s       game_t;
+typedef struct patern_s     patern_t;
 
 struct vector_s {
     int x;
@@ -34,13 +35,21 @@ struct game_s {
     int score;
     int level;
     time_t time;
-    void *map;
+    char **map;
+};
+
+struct patern_s {
+    patern_t *next;
+    char *filename;
+    char **parter;
+    vector_t size;
+    int color;
 };
 
 struct tetris_s {
     controls_t controls;
     game_t map;
-    void *tetriminos;
+    patern_t *tetriminos;
     bool show_next;
     bool debug;
     int high_score;
