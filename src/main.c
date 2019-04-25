@@ -13,8 +13,10 @@ int main(int argc, char const *argv[])
 
     FAIL_IF(!hub, 84);
     keypad(stdscr, TRUE);
-    show_usage();
-    initscr();
-    endwin();
+    // show_usage();
+    // initscr();
+    // endwin();
+    tetriminos_show_debug(hub);
+    my_iob_destroy();
     return (0);
 }

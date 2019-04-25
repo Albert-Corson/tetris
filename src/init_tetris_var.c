@@ -64,11 +64,11 @@ tetris_t *init_tetris_var(int argc, char const *argv[])
     ret->debug = false;
     ret->high_score = 0;
     ret->map = init_map();
-    // if (!read_flags(ret) || !create_map(&ret->map)) {
+    // if (!read_flags(argc, argv, ret) || !create_map(&ret->map)) {
         // destroy_tetris_var(ret);
         // return (NULL);
     // }
-    ret->tetriminos = init_tetriminos(argc, argv, ret->map.size);
+    ret->tetriminos = init_tetriminos(ret->map.size);
     return (ret);
 }
 
