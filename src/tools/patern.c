@@ -41,6 +41,7 @@ patern_t *patern_rotate(patern_t *patern)
 
 void patern_destroy(patern_t *patern)
 {
+    FAIL_IF_VOID(!patern);
     table_destroy((void **)patern->patern);
     free(patern);
 }

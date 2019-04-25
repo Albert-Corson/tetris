@@ -37,3 +37,20 @@ void *list_append(void **begin, void *node)
     }
     return (node);
 }
+
+void *list_pop_next(void **node)
+{
+    patern_t *st_node = NULL;
+    patern_t *ret = NULL;
+
+    FAIL_IF(!node || !*node, NULL);
+    st_node = *node;
+    if (st_node->next == st_node) {
+        *node = NULL;
+        return (st_node);
+    }
+    st_node = *node;
+    ret = st_node->next;
+    st_node->next = ret->next;
+    return (ret);
+}

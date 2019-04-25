@@ -31,6 +31,7 @@
 void show_usage(void);
 int list_poll(void *begin, void **buffer);
 void *list_append(void **begin, void *node);
+void *list_pop_next(void **node);
 void table_destroy(void **table);
 
 tetriminos_t *init_tetriminos(vector_t map_size);
@@ -40,6 +41,7 @@ patern_t *patern_rotate(patern_t *patern);
 void patern_destroy(patern_t *patern);
 patern_t *patern_new(char **patern, vector_t size, char color);
 patern_t *tetriminos_get_patern(char *filename);
+void tetrimino_destroy(tetriminos_t *tile);
 
 // DEBUG
 void tetrimino_show(tetriminos_t *tile);

@@ -18,5 +18,6 @@ int main(int argc, char const *argv[])
     tetriminos_show_debug(hub);
     rtn = game(hub);
     my_iob_destroy();
+    destroy_tetris_var(hub);
     return (rtn);
 }

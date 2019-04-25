@@ -55,7 +55,7 @@ void render_frame(game_t *game, vector_t src)
     for (pos.x = src.x - 2; pos.x < src.x + game->size.y + 2; pos.x++)
         mvaddch(pos.y, pos.x, '-');
     for (pos.y = src.y; pos.y < src.y + game->size.y; pos.y++) {
-        mvaddch(pos.y, src.x - 2, "||");
+        mvaddch(pos.y, src.x - 2, '|');
         mvaddstr(pos.y, src.x + game->size.x * 2, "||");
     }
     for (pos.x = src.x - 2; pos.x < src.x + game->size.y + 2; pos.x++)
@@ -94,7 +94,7 @@ int game(tetris_t *hub)
     int key = 0;
 
     initwin();
-    while (running) {
+    while (running && key != hub->controls.kquit) {
         clear();
         render(&hub->map);
         mvprintw(1, 1, "%ld", time(NULL) - hub->map.start);

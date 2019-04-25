@@ -70,5 +70,9 @@ tetris_t *init_tetris_var(int argc, char const *argv[])
 
 void destroy_tetris_var(tetris_t *var)
 {
-    var = var;
+    table_destroy((void **)var->map.map);
+    while (var->tetriminos)
+        tetrimino_destroy(list_pop_next((void **)&(var->tetriminos)));
+    tetrimino_destroy(var->tetriminos);
+    free(var);
 }

@@ -6,9 +6,9 @@
 ##
 
 SRC	=	src/main.c							\
-		src/get_tetriminos.c				\
-		src/init_tetriminos.c				\
-		src/init_tetris_var.c				\
+		src/tools/get_tetriminos.c			\
+		src/tools/init_tetriminos.c			\
+		src/tools/init_tetris_var.c			\
 		src/tools/usage.c					\
 		src/tools/list.c					\
 		src/tools/table.c					\

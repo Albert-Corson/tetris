@@ -55,3 +55,12 @@ tetriminos_t *init_tetriminos(vector_t map_size)
     closedir(dir);
     return (ret);
 }
+
+void tetrimino_destroy(tetriminos_t *tile)
+{
+    FAIL_IF_VOID(!tile);
+    free(tile->filename);
+    while (tile->paterns)
+        patern_destroy(list_pop_next((void **)&(tile->paterns)));
+    free(tile);
+}

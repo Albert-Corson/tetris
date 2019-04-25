@@ -33,7 +33,8 @@ static int size_n_color(char *str, vector_t *size, char *color)
     for (; str[i] >= '0' && str[i] <= '9'; ++i)
         *color = (*color * 10) + (str[i] - 48);
     i = skip_spaces(str, i);
-    FAIL_IF(str[i] != '\n' || size->x == 0 || size->y == 0 || *color == -1, 0);
+    FAIL_IF(str[i] != '\n' || size->x == 0 || size->y == 0, 0);
+    FAIL_IF(*color == -1 || *color > 7, 0);
     return (1);
 }
 
@@ -95,14 +96,15 @@ patern_t *tetriminos_get_patern(char *filename)
     char color = 0;
     vector_t size = VECT(0, 0);
     char **patern = NULL;
+    int check = 1;
 
     FAIL_IF(!fd, NULL);
     if (getline(&buffer, &rd, fd) > 0 && size_n_color(buffer, &size, &color))
         patern = get_patern(fd, size, color);
     else
-        return (NULL);
+        check = 0;
     free(path);
     free(buffer);
     fclose(fd);
-    return (patern_new(patern, size, color));
+    return (check ? patern_new(patern, size, color) : NULL);
 }
