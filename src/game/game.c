@@ -11,7 +11,7 @@ void initcolors(void)
 {
     start_color();
     use_default_colors();
-    init_pair(0, 0, 0);
+    init_pair(8, 0, 0);
     init_pair(1, 1, 1);
     init_pair(2, 2, 2);
     init_pair(3, 3, 3);
@@ -47,6 +47,22 @@ int render_scr_too_small(game_t *game, vector_t scr_size)
     }
 }
 
+void render_frame(game_t *game, vector_t src)
+{
+    vector_t pos = VECT(src.x - 1, src.y - 1);
+
+    SET_COLOR(8);
+    for (pos.x = src.x - 2; pos.x < src.x + game->size.y + 2; pos.x++)
+        mvaddch(pos.y, pos.x, '-');
+    for (pos.y = src.y; pos.y < src.y + game->size.y; pos.y++) {
+        mvaddch(pos.y, src.x - 2, "||");
+        mvaddstr(pos.y, src.x + game->size.x * 2, "||");
+    }
+    for (pos.x = src.x - 2; pos.x < src.x + game->size.y + 2; pos.x++)
+        mvaddch(pos.y, pos.x, '-');
+    UNSET_COLOR(8);
+}
+
 void render(game_t *game)
 {
     vector_t src = VECT(0, 0);
@@ -58,6 +74,7 @@ void render(game_t *game)
         return;
     src.x = (scr_size.x - game->size.x * 2) / 2;
     src.y = (scr_size.y - game->size.y) / 2;
+    render_frame(game, src);
     while (oft.y < game->size.y) {
         oft.x = 0;
         while (oft.x < game->size.x * 2) {
