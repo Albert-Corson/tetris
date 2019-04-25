@@ -6,7 +6,7 @@
 */
 
 #ifndef TETRIS_H_
-    #define TETRIS_H_
+#define TETRIS_H_
 
 #include <curses.h>
 #include <unistd.h>
@@ -25,6 +25,9 @@
 
 #define VECT(x, y) (vector_t){x, y}
 
+#define SET_COLOR(pair) if (has_colors()) attron(COLOR_PAIR(pair));
+#define UNSET_COLOR(pair) if (has_colors()) attroff(COLOR_PAIR(pair));
+
 void show_usage(void);
 int list_poll(void *begin, void **buffer);
 void *list_append(void **begin, void *node);
@@ -41,5 +44,6 @@ patern_t *tetriminos_get_patern(char *filename);
 // DEBUG
 void tetrimino_show(tetriminos_t *tile);
 void tetriminos_show_debug(tetris_t *hub);
+int game(tetris_t *hub);
 
 #endif /* !TETRIS_H_ */

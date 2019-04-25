@@ -14,6 +14,7 @@ SRC	=	src/main.c							\
 		src/tools/table.c					\
 		src/tools/patern.c					\
 		src/debug/tetriminos_debug.c		\
+		src/game/game.c
 
 OBJ	=	$(SRC:.c=.o)
 

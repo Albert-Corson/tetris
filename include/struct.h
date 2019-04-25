@@ -35,7 +35,7 @@ struct game_s {
     vector_t size;
     int score;
     int level;
-    time_t time;
+    time_t start;
     char **map;
 };
 

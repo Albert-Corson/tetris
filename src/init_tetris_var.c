@@ -28,29 +28,24 @@ game_t init_map(void)
     ret.map = NULL;
     ret.score = 0;
     ret.size = VECT(10, 20);
-    ret.time = 0;
+    ret.start = time(NULL);
     return (ret);
 }
 
 int create_map(game_t *game)
 {
-    int x = 0;
-    int y = 0;
+    vector_t pos = VECT(0, 0);
 
     FAIL_IF(game->size.x <= 0 || game->size.y <= 0, 0);
-    game->map = malloc(sizeof(char *) * (game->size.y + 1));
+    game->map = my_calloc(game->size.y + 1, sizeof(char *));
     FAIL_IF(!game->map, 0);
-    while (y < game->size.y) {
-        x = 0;
-        game->map[y] = malloc(sizeof(char) * (game->size.x + 1));
-        FAIL_IF(!game->map[y], 0);
-        while (x < game->size.x) {
-            game->map[y][x] = 32;
-            ++x;
-        }
-        ++y;
+    while (pos.y < game->size.y) {
+        game->map[pos.y] = malloc(sizeof(char) * (game->size.x + 1));
+        my_memset(game->map[pos.y], 1, game->size.x);
+        game->map[pos.y][game->size.x] = 0;
+        FAIL_IF(!game->map[pos.y], 0);
+        ++pos.y;
     }
-    game->map[y] = NULL;
     return (1);
 }
 
@@ -64,7 +59,8 @@ tetris_t *init_tetris_var(int argc, char const *argv[])
     ret->debug = false;
     ret->high_score = 0;
     ret->map = init_map();
-    // if (!read_flags(argc, argv, ret) || !create_map(&ret->map)) {
+    create_map(&ret->map);
+    // if (!read_flags(ret) || !create_map(&ret->map)) {
         // destroy_tetris_var(ret);
         // return (NULL);
     // }

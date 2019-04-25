@@ -13,10 +13,9 @@ int main(int argc, char const *argv[])
 
     FAIL_IF(!hub, 84);
     keypad(stdscr, TRUE);
-    // show_usage();
-    // initscr();
-    // endwin();
+    show_usage();
     tetriminos_show_debug(hub);
+    game(hub);
     my_iob_destroy();
-    return (0);
+    return (game(hub));
 }
