@@ -15,8 +15,8 @@
 #include <stdio.h>
 
 /*
- *  IO_BUF
- */
+*  IO_BUF
+*/
 
 #define MY_BUFSIZE  (1024)
 

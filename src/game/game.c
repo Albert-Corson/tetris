@@ -24,6 +24,7 @@ void initcolors(void)
 void initwin(void)
 {
     initscr();
+    flushinp();
     noecho();
     nodelay(stdscr, TRUE);
     timeout(100);

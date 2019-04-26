@@ -84,7 +84,7 @@ int read_flags(int ac, char *const *av, tetris_t *hub)
         {0, 0, 0, 0}};
 
     while ((val.x = getopt_long(ac, av, "L:l:r:t:d:q:p:wD", opt, &n)) >= 0) {
-        FAIL_IF(val.x == '?', 84);;
+        FAIL_IF(val.x == '?', 84);
         val.y = do_flag(hub, val.x);
         FAIL_IF(val.y != 0, val.y);
     }

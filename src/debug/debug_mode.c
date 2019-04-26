@@ -73,6 +73,8 @@ void controls_show_debug(controls_t controls)
 
 void debug_mode(tetris_t *hub)
 {
+    char c = 0;
+
     FAIL_IF_VOID(!hub);
     my_printf("*** DEBUG MODE ***\n");
     controls_show_debug(hub->controls);
@@ -81,4 +83,5 @@ void debug_mode(tetris_t *hub)
     my_printf("Size : %d*%d\n", hub->map.size.y, hub->map.size.x);
     tetriminos_show_debug(hub);
     my_printf("Press any key to start Tetris\n");
+    read(0, &c, 1);
 }
