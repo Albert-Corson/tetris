@@ -6,13 +6,13 @@
 ##
 
 SRC	=	src/main.c							\
-		src/tools/get_tetriminos.c			\
+		src/tools/get_tetrimino.c			\
 		src/tools/init_tetriminos.c			\
 		src/tools/init_tetris_var.c			\
 		src/tools/usage.c					\
 		src/tools/list.c					\
 		src/tools/table.c					\
-		src/tools/patern.c					\
+		src/tools/pattern.c					\
 		src/tools/my_nisnum.c				\
 		src/debug/debug_mode.c				\
 		src/flags/read_flags.c				\

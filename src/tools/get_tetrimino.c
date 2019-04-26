@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** tetris
 ** File description:
-** get_tetriminos
+** get_tetrimino
 */
 
 #include "tetris.h"
@@ -38,7 +38,7 @@ static int size_n_color(char *str, vector_t *size, char *color)
     return (1);
 }
 
-int fill_patern_line(char *buffer, char **line, vector_t size, char color)
+int fill_pattern_line(char *buffer, char **line, vector_t size, char color)
 {
     int i = 0;
 
@@ -62,7 +62,7 @@ int fill_patern_line(char *buffer, char **line, vector_t size, char color)
     return ((i != size.x && i != -1) ? 0 : 1);
 }
 
-static char **get_patern(FILE *fd, vector_t size, char color)
+static char **get_pattern(FILE *fd, vector_t size, char color)
 {
     char **ret = my_calloc(size.y + 1, sizeof(char *));
     char *buffer = NULL;
@@ -71,7 +71,7 @@ static char **get_patern(FILE *fd, vector_t size, char color)
     int i = 0;
 
     while ((n = getline(&buffer, &rd, fd)) > 0 && i < size.y) {
-        if (!fill_patern_line(buffer, &ret[i], size, color)) {
+        if (!fill_pattern_line(buffer, &ret[i], size, color)) {
             table_destroy((void **)ret);
             free(buffer);
             return (NULL);
@@ -87,7 +87,7 @@ static char **get_patern(FILE *fd, vector_t size, char color)
     return (ret);
 }
 
-patern_t *tetriminos_get_patern(char *filename)
+pattern_t *tetrimino_get_pattern(char *filename)
 {
     char *path = my_format("./tetriminos/%s", filename);
     FILE *fd = fopen(path, "r");
@@ -95,16 +95,16 @@ patern_t *tetriminos_get_patern(char *filename)
     size_t rd = 0;
     char color = 0;
     vector_t size = VECT(0, 0);
-    char **patern = NULL;
+    char **pattern = NULL;
     int check = 1;
 
     FAIL_IF(!fd, NULL);
     if (getline(&buffer, &rd, fd) > 0 && size_n_color(buffer, &size, &color))
-        patern = get_patern(fd, size, color);
+        pattern = get_pattern(fd, size, color);
     else
         check = 0;
     free(path);
     free(buffer);
     fclose(fd);
-    return (check ? patern_new(patern, size, color) : NULL);
+    return (check ? pattern_new(pattern, size, color) : NULL);
 }

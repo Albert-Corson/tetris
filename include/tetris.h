@@ -36,14 +36,14 @@ void *list_pop_next(void **node);
 void table_destroy(void **table);
 int my_nisnum(char const *str, int lim);
 
-tetriminos_t *init_tetriminos(vector_t map_size);
+tetrimino_t *init_tetriminos(vector_t map_size);
 int init_tetris_var(int argc, char *const *argv, tetris_t **hub);
 void destroy_tetris_var(tetris_t *var);
-patern_t *patern_rotate(patern_t *patern);
-void patern_destroy(patern_t *patern);
-patern_t *patern_new(char **patern, vector_t size, char color);
-patern_t *tetriminos_get_patern(char *filename);
-void tetrimino_destroy(tetriminos_t *tile);
+pattern_t *pattern_rotate(pattern_t *pattern);
+void pattern_destroy(pattern_t *pattern);
+pattern_t *pattern_new(char **pattern, vector_t size, char color);
+void tetrimino_destroy(tetrimino_t *tile);
+pattern_t *tetrimino_get_pattern(char *filename);
 
 // FLAGS
 int read_flags(int argc, char *const *argv, tetris_t *var);
