@@ -14,6 +14,8 @@ SRC	=	src/main.c							\
 		src/tools/table.c					\
 		src/tools/pattern.c					\
 		src/tools/my_nisnum.c				\
+		src/tools/list_sort.c				\
+		src/tools/my_strlowcase.c			\
 		src/debug/debug_mode.c				\
 		src/flags/read_flags.c				\
 		src/game/game.c

@@ -27,10 +27,10 @@ int main(int argc, char *const *argv)
     if (rtn == 0) {
         if (hub->debug)
             debug_mode(hub);
-        if (!is_valid_tetrimino(hub)) {
-            keypad(stdscr, TRUE);
+        if (is_valid_tetrimino(hub))
             rtn = game(hub);
-        }
+        else
+            rtn = 84;
     }
     my_iob_destroy();
     destroy_tetris_var(hub);

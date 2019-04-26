@@ -67,8 +67,10 @@ int init_tetris_var(int argc, char *const *argv, tetris_t **hub)
     if (check == 84 || !create_map(&ret->map)) {
         destroy_tetris_var(ret);
         *hub = NULL;
-    } else if (check == 0)
+    } else if (check == 0) {
         ret->tetriminos = init_tetriminos(ret->map.size);
+        tetrimino_sort(*hub);
+    }
     return (check);
 }
 
