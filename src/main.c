@@ -7,17 +7,19 @@
 
 #include "tetris.h"
 
-int main(int argc, char const *argv[])
+int main(int argc, char *const *argv)
 {
-    tetris_t *hub = init_tetris_var(argc, argv);
-    int rtn = 0;
+    tetris_t *hub = NULL;
+    int rtn = init_tetris_var(argc, argv, &hub);
 
     FAIL_IF(!hub, 84);
-    keypad(stdscr, TRUE);
-    show_usage();
-    tetriminos_show_debug(hub);
-    rtn = game(hub);
+    if (rtn == 0) {
+        if (hub->debug)
+            debug_mode(hub);
+        keypad(stdscr, TRUE);
+        rtn = game(hub);
+    }
     my_iob_destroy();
     destroy_tetris_var(hub);
-    return (rtn);
+    return (rtn == 1 ? 0 : rtn);
 }

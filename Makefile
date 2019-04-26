@@ -13,7 +13,9 @@ SRC	=	src/main.c							\
 		src/tools/list.c					\
 		src/tools/table.c					\
 		src/tools/patern.c					\
-		src/debug/tetriminos_debug.c		\
+		src/tools/my_nisnum.c				\
+		src/debug/debug_mode.c				\
+		src/flags/read_flags.c				\
 		src/game/game.c
 
 OBJ	=	$(SRC:.c=.o)

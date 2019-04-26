@@ -7,7 +7,7 @@
 
 #include "../include/tetris.h"
 
-static int get_char_pos(char const *str, char goal)
+int get_char_pos(char const *str, char goal)
 {
     int n = 0;
 
@@ -67,13 +67,13 @@ static char *get_line(int fd)
     return (rtn);
 }
 
-void show_usage(void)
+int show_usage(void)
 {
     int fd = open(".legend", O_RDONLY);
     char *str = NULL;
     int i = 0;
 
-    FAIL_IF_VOID(fd < 0);
+    FAIL_IF(fd < 0, 84);
     str = get_line(fd);
     while (str) {
         if (i >= 2) {
@@ -84,4 +84,5 @@ void show_usage(void)
         str = get_line(fd);
         ++i;
     }
+    return (1);
 }

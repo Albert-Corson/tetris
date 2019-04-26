@@ -49,23 +49,27 @@ int create_map(game_t *game)
     return (1);
 }
 
-tetris_t *init_tetris_var(int argc, char const *argv[])
+int init_tetris_var(int argc, char *const *argv, tetris_t **hub)
 {
-    tetris_t *ret = malloc(sizeof(*ret));
+    tetris_t *ret = NULL;
+    int check = -1;
 
-    FAIL_IF(!ret, NULL);
+    *hub = malloc(sizeof(*ret));
+    ret = *hub;
+    FAIL_IF(!ret, 84);
     ret->controls = init_controls();
     ret->show_next = true;
     ret->debug = false;
     ret->high_score = 0;
     ret->map = init_map();
-    create_map(&ret->map);
-    // if (!read_flags(ret) || !create_map(&ret->map)) {
-        // destroy_tetris_var(ret);
-        // return (NULL);
-    // }
-    ret->tetriminos = init_tetriminos(ret->map.size);
-    return (ret);
+    ret->tetriminos = NULL;
+    check = read_flags(argc, argv, ret);
+    if (check == 84 || !create_map(&ret->map)) {
+        destroy_tetris_var(ret);
+        *hub = NULL;
+    } else if (check == 0)
+        ret->tetriminos = init_tetriminos(ret->map.size);
+    return (check);
 }
 
 void destroy_tetris_var(tetris_t *var)
