@@ -7,22 +7,6 @@
 
 #include "tetris.h"
 
-
-int render_scr_too_small(tetris_t *hub, vector_t scr_size)
-{
-    vector_t pos = VECT(0, 0);
-
-    if (scr_size.x < hub->map.size.x || scr_size.y < hub->map.size.y) {
-        pos.x = (scr_size.x - 21) / 2;
-        pos.y = (scr_size.y) / 2;
-        clear();
-        mvaddstr(pos.y, pos.x, "ENLARGE YOUR TERMINAL");
-        return (1);
-    } else {
-        return (0);
-    }
-}
-
 void render_frame(tetris_t *hub, vector_t src)
 {
     vector_t pos = VECT(src.x - 2, src.y - 1);

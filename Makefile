@@ -23,6 +23,7 @@ SRC	=	src/main.c							\
 		src/game/game.c						\
 		src/game/map_rm_line.c				\
 		src/game/render.c					\
+		src/game/states.c					\
 		src/game/handlers.c					\
 		src/game/collisions.c				\
 		src/game/tetriminos.c

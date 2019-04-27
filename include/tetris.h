@@ -63,12 +63,16 @@ int game(tetris_t *hub);
 void pick_tetriminos(tetris_t *hub);
 int can_translate_tetrimino(tetris_t *hub, vector_t v);
 int translate_tetrimino(tetris_t *hub, vector_t v);
-int fall_tetrimino(tetris_t *hub, int speed);
-void merge_tetrimino(tetris_t *hub, bool running);
+int fall_tetrimino(tetris_t *hub);
+void merge_tetrimino(tetris_t *hub);
 void map_rm_line(tetris_t *hub);
 
 // RENDER
 int render_scr_too_small(tetris_t *hub, vector_t scr_size);
+void render_state(tetris_t *hub);
+void render_game(tetris_t *hub, vector_t scr_size);
+void render_game_over(vector_t scr_size);
+void render_pause(vector_t scr_size);
 void render_frame(tetris_t *hub, vector_t src);
 void render_board(tetris_t *hub, vector_t src);
 void render_block(tetris_t *hub, vector_t dest, vector_t oft);

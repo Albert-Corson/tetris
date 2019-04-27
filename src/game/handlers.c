@@ -31,6 +31,8 @@ void key_handlers(tetris_t *hub, int key)
 
 void move_tetrimino(tetris_t *hub, int key)
 {
+    if (hub->map.state != gs_running)
+        return;
     if (key == hub->controls.kleft)
         translate_tetrimino(hub, VECT(-1, 0));
     else if (key == hub->controls.kright)
@@ -41,7 +43,7 @@ void rotate_tetrimino(tetris_t *hub, int key)
 {
     pattern_t *pattern = hub->map.curr_tetrimino->patterns;
 
-    if (key != hub->controls.krotate)
+    if (hub->map.state != gs_running || key != hub->controls.krotate)
         return;
     hub->map.curr_tetrimino->patterns = pattern->next;
     if (!can_translate_tetrimino(hub, VECT(0, 0)))
@@ -50,16 +52,19 @@ void rotate_tetrimino(tetris_t *hub, int key)
 
 void pause_game(tetris_t *hub, int key)
 {
-    if (key != hub->controls.kpause)
+    if (hub->map.state == gs_over || key != hub->controls.kpause)
         return;
-    mvaddch(5, 5, '-');
+    if (hub->map.state == gs_running)
+        hub->map.state = gs_paused;
+    else if (hub->map.state == gs_paused)
+        hub->map.state = gs_running;
 }
 
 void drop_tetrimino(tetris_t *hub, int key)
 {
     int stuck = 0;
 
-    if (key != hub->controls.kdrop)
+    if (hub->map.state != gs_running || key != hub->controls.kdrop)
         return;
     while (!stuck)
         stuck = !translate_tetrimino(hub, VECT(0, 1));

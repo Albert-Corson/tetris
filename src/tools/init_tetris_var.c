@@ -29,7 +29,12 @@ game_t init_map(void)
     ret.score = 0;
     ret.lines = 0;
     ret.size = VECT(10, 20);
-    ret.start = time(NULL);
+    ret.s_start = time(NULL);
+    ret.s_elapsed = 0;
+    ret.ms_last_clock = clock();
+    ret.ms_elapsed = 0;
+    ret.speed = 500;
+    ret.state = gs_paused;
     ret.curr_tetrimino = NULL;
     ret.next_tetrimino = NULL;
     ret.tetrimino_pos = VECT(0, 0);

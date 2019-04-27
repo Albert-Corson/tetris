@@ -14,8 +14,15 @@ typedef struct vector_s     vector_t;
 typedef struct tetris_s     tetris_t;
 typedef struct controls_s   controls_t;
 typedef struct game_s       game_t;
-typedef struct pattern_s     pattern_t;
-typedef struct tetrimino_s tetrimino_t;
+typedef struct pattern_s    pattern_t;
+typedef struct tetrimino_s  tetrimino_t;
+typedef enum game_state_e   gstate_t;
+
+enum game_state_e {
+    gs_running,
+    gs_paused,
+    gs_over,
+};
 
 struct vector_s {
     int x;
@@ -36,8 +43,13 @@ struct game_s {
     int score;
     int level;
     int lines;
-    time_t start;
     char **map;
+    int speed;
+    time_t s_start;
+    time_t s_elapsed;
+    clock_t ms_last_clock;
+    clock_t ms_elapsed;
+    gstate_t state;
     vector_t tetrimino_pos;
     tetrimino_t *curr_tetrimino;
     tetrimino_t *next_tetrimino;

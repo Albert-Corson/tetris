@@ -44,7 +44,7 @@ int translate_tetrimino(tetris_t *hub, vector_t v)
     return (!collide);
 }
 
-void merge_tetrimino(tetris_t *hub, bool running)
+void merge_tetrimino(tetris_t *hub)
 {
     int max_x = hub->map.size.x;
     pattern_t *pattern = hub->map.curr_tetrimino->patterns;
@@ -61,24 +61,24 @@ void merge_tetrimino(tetris_t *hub, bool running)
             hub->map.map[pos.y + oft.y][pos.x + oft.x] = map_ch;
         }
     }
-    if (running) {
+    if (hub->map.state == gs_running) {
         pick_tetriminos(hub);
         max_x -= hub->map.curr_tetrimino->patterns->size.x;
         hub->map.tetrimino_pos = VECT(rand_btw(0, max_x), 0);
     }
 }
 
-int fall_tetrimino(tetris_t *hub, int speed)
+int fall_tetrimino(tetris_t *hub)
 {
     int moves = 1;
-    static clock_t last_clock = 0;
-    static clock_t elapsed = 0;
+    clock_t *last_clock = &hub->map.ms_last_clock;
+    clock_t *elapsed = &hub->map.ms_elapsed;
 
-    elapsed += ((clock() - last_clock) * 100) / (CLOCKS_PER_SEC / 1000);
-    last_clock = clock();
-    moves = (elapsed >= speed ? 0 : 1);
-    while (elapsed >= speed) {
-        elapsed -= speed;
+    *elapsed += ((clock() - *last_clock) * 100) / (CLOCKS_PER_SEC / 1000);
+    *last_clock = clock();
+    moves = (*elapsed >= hub->map.speed ? 0 : 1);
+    while (*elapsed >= hub->map.speed) {
+        *elapsed -= hub->map.speed;
         moves += translate_tetrimino(hub, VECT(0, 1));
     }
     return (moves > 0);
