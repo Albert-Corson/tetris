@@ -17,7 +17,7 @@ void key_handlers(tetris_t *hub, int key)
         pause_game
     };
     int keys[5] = {
-        hub->controls.kleft, hub->controls.kright, hub->controls.krotate, 
+        hub->controls.kleft, hub->controls.kright, hub->controls.krotate,
         hub->controls.kdrop, hub->controls.kpause
     };
     int index = 0;

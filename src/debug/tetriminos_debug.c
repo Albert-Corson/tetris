@@ -30,7 +30,7 @@ void tetrimino_show(tetrimino_t *tile)
         return;
     }
     my_printf("Size %d*%d : Color %d :\n", tile->patterns->size.x, \
-        tile->patterns->size.y, tile->patterns->color);
+    tile->patterns->size.y, tile->patterns->color);
     while (pattern[y]) {
         my_printf("%c", (pattern[y][x] == -1) ? ' ' : '*');
         ++x;

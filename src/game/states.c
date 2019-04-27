@@ -25,12 +25,15 @@ int render_scr_too_small(tetris_t *hub, vector_t scr_size)
 void render_game(tetris_t *hub, vector_t scr_size)
 {
     vector_t src = VECT(0, 0);
+    vector_t map = hub->map.size;
 
-    src.x = (scr_size.x - hub->map.size.x * 2) / 2;
-    src.y = (scr_size.y - hub->map.size.y) / 2;
+    src.x = (scr_size.x - map.x * 2) / 2;
+    src.y = (scr_size.y - map.y) / 2;
+    hub->map.s_elapsed = time(NULL) - hub->map.s_start;
     render_board(hub, src);
     render_tetrimino(hub, src);
     render_frame(hub, src);
+    render_game_info(hub, VECT(src.x + (map.x * 2) + 2, src.y - 1));
 }
 
 void render_game_over(vector_t scr_size)

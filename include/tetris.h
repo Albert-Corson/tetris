@@ -77,6 +77,7 @@ void render_frame(tetris_t *hub, vector_t src);
 void render_board(tetris_t *hub, vector_t src);
 void render_block(tetris_t *hub, vector_t dest, vector_t oft);
 void render_tetrimino(tetris_t *hub, vector_t src);
+void render_game_info(tetris_t *hub, vector_t pos);
 
 // ACTIONS
 void key_handlers(tetris_t *hub, int key);

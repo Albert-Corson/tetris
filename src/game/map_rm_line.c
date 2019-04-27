@@ -15,7 +15,7 @@ static void rm_line(char **map, int line)
     while (line > 1) {
         x = 0;
         while (map[line - 1][x]) {
-            map[line][x] = map[line - 1][x]; 
+            map[line][x] = map[line - 1][x];
             ++x;
         }
         --line;
