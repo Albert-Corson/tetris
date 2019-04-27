@@ -36,6 +36,7 @@ pattern_t *pattern_rotate(pattern_t *pattern)
         for (x = 0; x < new->size.x; ++x)
             new->pattern[y][x] = model[pattern->size.y - (x + 1)][y];
     }
+    new->color = pattern->color;
     return (new);
 }
 

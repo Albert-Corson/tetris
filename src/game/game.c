@@ -68,6 +68,7 @@ int game(tetris_t *hub)
             merge_tetrimino(hub, running);
             speed -= 1;
         }
+        map_rm_line(hub);
         render(hub, running);
         if (running)
             key_handlers(hub, key);

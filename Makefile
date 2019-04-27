@@ -21,6 +21,7 @@ SRC	=	src/main.c							\
 		src/debug/tetriminos_debug.c		\
 		src/flags/read_flags.c				\
 		src/game/game.c						\
+		src/game/map_rm_line.c				\
 		src/game/render.c					\
 		src/game/handlers.c					\
 		src/game/collisions.c				\

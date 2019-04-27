@@ -35,6 +35,7 @@ struct game_s {
     vector_t size;
     int score;
     int level;
+    int lines;
     time_t start;
     char **map;
     vector_t tetrimino_pos;

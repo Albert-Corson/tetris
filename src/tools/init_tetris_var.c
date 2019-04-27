@@ -27,6 +27,7 @@ game_t init_map(void)
     ret.level = 1;
     ret.map = NULL;
     ret.score = 0;
+    ret.lines = 0;
     ret.size = VECT(10, 20);
     ret.start = time(NULL);
     ret.curr_tetrimino = NULL;

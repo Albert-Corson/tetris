@@ -44,6 +44,8 @@ void rotate_tetrimino(tetris_t *hub, int key)
     if (key != hub->controls.krotate)
         return;
     hub->map.curr_tetrimino->patterns = pattern->next;
+    if (!can_translate_tetrimino(hub, VECT(0, 0)))
+        hub->map.curr_tetrimino->patterns = pattern;
 }
 
 void pause_game(tetris_t *hub, int key)

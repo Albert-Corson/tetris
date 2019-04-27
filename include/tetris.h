@@ -65,6 +65,7 @@ int can_translate_tetrimino(tetris_t *hub, vector_t v);
 int translate_tetrimino(tetris_t *hub, vector_t v);
 int fall_tetrimino(tetris_t *hub, int speed);
 void merge_tetrimino(tetris_t *hub, bool running);
+void map_rm_line(tetris_t *hub);
 
 // RENDER
 int render_scr_too_small(tetris_t *hub, vector_t scr_size);
