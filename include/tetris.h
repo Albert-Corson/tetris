@@ -25,8 +25,8 @@
 
 #define VECT(x, y) (vector_t){x, y}
 
-#define SET_COLOR(pair) if (has_colors()) attron(COLOR_PAIR(pair));
-#define UNSET_COLOR(pair) if (has_colors()) attroff(COLOR_PAIR(pair));
+#define SET_COLOR(id) if (has_colors() && id >= 0) attron(COLOR_PAIR(id));
+#define UNSET_COLOR(id) if (has_colors()) attroff(COLOR_PAIR(id));
 
 int get_char_pos(char const *str, char goal);
 int show_usage(void);
@@ -55,6 +55,29 @@ int set_key(tetris_t *hub, char flag);
 int debug_mode(tetris_t *hub);
 void tetriminos_show_debug(tetris_t *hub);
 
+// TOOLS
+int rand_btw(int min, int max);
+
+// GAME
 int game(tetris_t *hub);
+void pick_tetriminos(tetris_t *hub);
+int can_translate_tetrimino(tetris_t *hub, vector_t v);
+int translate_tetrimino(tetris_t *hub, vector_t v);
+int fall_tetrimino(tetris_t *hub, int speed);
+void merge_tetrimino(tetris_t *hub, bool running);
+
+// RENDER
+int render_scr_too_small(tetris_t *hub, vector_t scr_size);
+void render_frame(tetris_t *hub, vector_t src);
+void render_board(tetris_t *hub, vector_t src);
+void render_block(tetris_t *hub, vector_t dest, vector_t oft);
+void render_tetrimino(tetris_t *hub, vector_t src);
+
+// ACTIONS
+void key_handlers(tetris_t *hub, int key);
+void move_tetrimino(tetris_t *hub, int key);
+void rotate_tetrimino(tetris_t *hub, int key);
+void drop_tetrimino(tetris_t *hub, int key);
+void pause_game(tetris_t *hub, int key);
 
 #endif /* !TETRIS_H_ */

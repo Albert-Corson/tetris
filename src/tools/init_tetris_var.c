@@ -29,6 +29,9 @@ game_t init_map(void)
     ret.score = 0;
     ret.size = VECT(10, 20);
     ret.start = time(NULL);
+    ret.curr_tetrimino = NULL;
+    ret.next_tetrimino = NULL;
+    ret.tetrimino_pos = VECT(0, 0);
     return (ret);
 }
 
@@ -41,7 +44,7 @@ int create_map(game_t *game)
     FAIL_IF(!game->map, 0);
     while (pos.y < game->size.y) {
         game->map[pos.y] = malloc(sizeof(char) * (game->size.x + 1));
-        my_memset(game->map[pos.y], 1, game->size.x);
+        my_memset(game->map[pos.y], -1, game->size.x);
         game->map[pos.y][game->size.x] = 0;
         FAIL_IF(!game->map[pos.y], 0);
         ++pos.y;

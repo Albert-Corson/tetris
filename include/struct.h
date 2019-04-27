@@ -37,6 +37,9 @@ struct game_s {
     int level;
     time_t start;
     char **map;
+    vector_t tetrimino_pos;
+    tetrimino_t *curr_tetrimino;
+    tetrimino_t *next_tetrimino;
 };
 
 struct pattern_s {

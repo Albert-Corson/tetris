@@ -24,6 +24,7 @@ int main(int argc, char *const *argv)
     int rtn = init_tetris_var(argc, argv, &hub);
 
     FAIL_IF(!hub, 84);
+    srand(time(0));
     if (rtn == 0) {
         if (hub->debug)
             rtn = debug_mode(hub);

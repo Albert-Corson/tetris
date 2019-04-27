@@ -7,18 +7,15 @@
 
 #include "my.h"
 
-static int _my_iob = 0;
-
 void my_iob_init(int fd)
 {
-    if (!_my_iob) {
+    if (!MY_IOB.base) {
         MY_IOB.base = my_calloc(MY_BUFSIZE, sizeof(char));
         if (!MY_IOB.base)
             return;
         MY_IOB.ptr = MY_IOB.base;
         MY_IOB.cnt = MY_BUFSIZE;
         MY_IOB.fd = -1;
-        _my_iob = 1;
     }
     if (fd != -1 && fd != MY_IOB.fd) {
         my_iob_flush();
@@ -66,7 +63,7 @@ char my_iob_getc(void)
 
 void my_iob_destroy(void)
 {
-    if (_my_iob) {
+    if (MY_IOB.base) {
         my_iob_flush();
         if (MY_IOB.base)
             free(MY_IOB.base);
@@ -74,6 +71,5 @@ void my_iob_destroy(void)
         MY_IOB.ptr = NULL;
         MY_IOB.cnt = MY_BUFSIZE;
         MY_IOB.fd = -1;
-        _my_iob = 0;
     }
 }
