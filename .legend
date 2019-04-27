@@ -1,6 +1,5 @@
 ### [ LEGEND FILE ] ###
 
-Usage: ./tetris [options]
 Options:
 --help Display this help
 -L --level={num} Start Tetris at level num (def: 1)

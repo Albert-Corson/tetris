@@ -24,7 +24,7 @@ void tetrimino_show(tetrimino_t *tile)
     int y = 0;
     char **pattern = tile->patterns ? tile->patterns->pattern : NULL;
 
-    my_printf("Tetrimino : Name %s : ", tile->filename);
+    my_printf("Tetriminos : Name %s : ", tile->filename);
     if (!pattern) {
         my_printf("Error\n");
         return;
@@ -50,7 +50,7 @@ void tetriminos_show_debug(tetris_t *hub)
     while (list_poll((void *)hub->tetriminos, (void **)&curr))
         ++nb;
     curr = NULL;
-    my_printf("Tetrimino : %d\n", nb);
+    my_printf("Tetriminos : %d\n", nb);
     while (list_poll((void *)hub->tetriminos, (void **)&curr))
         tetrimino_show(curr);
 }

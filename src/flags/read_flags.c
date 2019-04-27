@@ -47,10 +47,10 @@ int set_level(tetris_t *hub)
     return (0);
 }
 
-int do_flag(tetris_t *hub, char flag)
+int do_flag(tetris_t *hub, char flag, char *binname)
 {
     if (flag == 'h')
-        return (show_usage());
+        return (show_usage(binname));
     if (flag == 'w')
         hub->show_next = false;
     else if (flag == 'D')
@@ -85,7 +85,7 @@ int read_flags(int ac, char *const *av, tetris_t *hub)
 
     while ((val.x = getopt_long(ac, av, "L:l:r:t:d:q:p:wD", opt, &n)) >= 0) {
         FAIL_IF(val.x == '?', 84);
-        val.y = do_flag(hub, val.x);
+        val.y = do_flag(hub, val.x, av[0]);
         FAIL_IF(val.y != 0, val.y);
     }
     return (0);

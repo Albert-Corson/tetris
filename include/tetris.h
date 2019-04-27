@@ -21,7 +21,6 @@
 
 #define FAIL_IF(cond, ret) if (cond) return (ret);
 #define FAIL_IF_VOID(cond) if (cond) return;
-#define MIN(x, y) (x < y ? x : y)
 
 #define VECT(x, y) (vector_t){x, y}
 
@@ -29,7 +28,7 @@
 #define UNSET_COLOR(id) if (has_colors()) attroff(COLOR_PAIR(id));
 
 int get_char_pos(char const *str, char goal);
-int show_usage(void);
+int show_usage(char *binname);
 int list_poll(void *begin, void **buffer);
 void *list_append(void **begin, void *node);
 void *list_pop_next(void **node);

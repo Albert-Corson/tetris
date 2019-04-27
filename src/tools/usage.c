@@ -67,13 +67,14 @@ static char *get_line(int fd)
     return (rtn);
 }
 
-int show_usage(void)
+int show_usage(char *binname)
 {
     int fd = open(".legend", O_RDONLY);
     char *str = NULL;
     int i = 0;
 
     FAIL_IF(fd < 0, 84);
+    my_printf("Usage: %s [options]\n", binname);
     str = get_line(fd);
     while (str) {
         if (i >= 2) {

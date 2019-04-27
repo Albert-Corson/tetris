@@ -80,6 +80,5 @@ void list_revert(tetris_t *hub)
 
 void tetrimino_sort(tetris_t *hub)
 {
-    list_revert(hub);
     sort_list(hub);
 }
