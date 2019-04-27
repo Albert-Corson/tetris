@@ -17,6 +17,7 @@ SRC	=	src/main.c							\
 		src/tools/list_sort.c				\
 		src/tools/my_strlowcase.c			\
 		src/debug/debug_mode.c				\
+		src/debug/tetriminos_debug.c		\
 		src/flags/read_flags.c				\
 		src/game/game.c
 

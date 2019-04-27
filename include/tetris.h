@@ -52,7 +52,8 @@ int read_flags(int argc, char *const *argv, tetris_t *var);
 int set_key(tetris_t *hub, char flag);
 
 // DEBUG
-void debug_mode(tetris_t *hub);
+int debug_mode(tetris_t *hub);
+void tetriminos_show_debug(tetris_t *hub);
 
 int game(tetris_t *hub);
 

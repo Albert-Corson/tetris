@@ -26,10 +26,10 @@ int main(int argc, char *const *argv)
     FAIL_IF(!hub, 84);
     if (rtn == 0) {
         if (hub->debug)
-            debug_mode(hub);
-        if (is_valid_tetrimino(hub))
+            rtn = debug_mode(hub);
+        if (rtn == 0 && is_valid_tetrimino(hub))
             rtn = game(hub);
-        else
+        else if (rtn != 0)
             rtn = 84;
     }
     my_iob_destroy();
