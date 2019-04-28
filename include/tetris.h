@@ -35,6 +35,7 @@ void *list_pop_next(void **node);
 void table_destroy(void **table);
 int my_nisnum(char const *str, int lim);
 char *my_strlowcase(char *str);
+int check_flag(char *const *av);
 
 tetrimino_t *init_tetriminos(vector_t map_size);
 int init_tetris_var(int argc, char *const *argv, tetris_t **hub);

@@ -80,11 +80,11 @@ int read_flags(int ac, char *const *av, tetris_t *hub)
         {"key-pause", required_argument, NULL, 'p'},
         {"map-size", required_argument, NULL, 'm'},
         {"without-next", no_argument, NULL, 'w'},
-        {"debug", no_argument, NULL, 'D'},
-        {0, 0, 0, 0}};
+        {"debug", no_argument, NULL, 'D'}};
 
+    FAIL_IF(!check_flag(av), 84);
     while ((val.x = getopt_long(ac, av, "L:l:r:t:d:q:p:wD", opt, &n)) >= 0) {
-        FAIL_IF(val.x == '?', 84);
+        FAIL_IF(val.x == '?' || !check_flag(av), 84);
         val.y = do_flag(hub, val.x, av[0]);
         FAIL_IF(val.y != 0, val.y);
     }

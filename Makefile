@@ -20,6 +20,7 @@ SRC	=	src/main.c							\
 		src/debug/debug_mode.c				\
 		src/debug/tetriminos_debug.c		\
 		src/flags/read_flags.c				\
+		src/flags/check_flag.c				\
 		src/game/game.c						\
 		src/game/map_rm_line.c				\
 		src/game/render.c					\
