@@ -52,8 +52,20 @@ void rotate_tetrimino(tetris_t *hub, int key)
 
 void pause_game(tetris_t *hub, int key)
 {
-    if (hub->map.state == gs_over || key != hub->controls.kpause)
+    FAIL_IF_VOID(key != hub->controls.kpause);
+    if (hub->map.state == gs_over) {
+        table_destroy((void **)(hub->map.map));
+        hub->map.map = NULL;
+        hub->map.curr_tetrimino = NULL;
+        hub->map.next_tetrimino = NULL;
+        hub->map.state = gs_running;
+        hub->map.s_elapsed = 0;
+        hub->map.s_start = time(NULL);
+        hub->map.ms_last_clock = clock();
+        create_map(&(hub->map));
+        pick_tetriminos(hub);
         return;
+    }
     if (hub->map.state == gs_running)
         hub->map.state = gs_paused;
     else if (hub->map.state == gs_paused)

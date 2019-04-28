@@ -38,3 +38,26 @@ void render_game_info(tetris_t *hub, vector_t pos)
     mvprintw(pos.y + 8 - 1, pos.x + 1, "Timer %02d:%02d", min, sec);
     free(str);
 }
+
+void render_next_tetrimino(tetris_t *hub, vector_t pos)
+{
+    vector_t curr = VECT(0, 0);
+    char **next = next = hub->map.next_tetrimino->patterns->pattern;
+    vector_t size = hub->map.next_tetrimino->patterns->size;
+
+    FAIL_IF_VOID(!hub->show_next);
+    render_info_frame(pos, VECT((size.x * 2) + 3, size.y + 3), 7);
+    pos.y += 2;
+    pos.x += 2;
+    SET_COLOR(hub->map.next_tetrimino->patterns->color);
+    while (next[curr.y]) {
+        if (next[curr.y][curr.x] != -1)
+            mvaddstr(pos.y + curr.y, pos.x + (curr.x * 2), "  ");
+        ++curr.x;
+        if (!next[curr.y][curr.x]) {
+            curr.x = 0;
+            ++curr.y;
+        }
+    }
+    UNSET_COLOR(hub->map.next_tetrimino->patterns->color);
+}

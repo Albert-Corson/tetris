@@ -56,6 +56,7 @@ void tetriminos_show_debug(tetris_t *hub);
 
 // TOOLS
 int rand_btw(int min, int max);
+int create_map(game_t *game);
 
 // GAME
 int game(tetris_t *hub);
@@ -70,13 +71,14 @@ void map_rm_line(tetris_t *hub);
 int render_scr_too_small(tetris_t *hub, vector_t scr_size);
 void render_state(tetris_t *hub);
 void render_game(tetris_t *hub, vector_t scr_size);
-void render_game_over(vector_t scr_size);
+void render_game_over(tetris_t *hub, vector_t scr_size);
 void render_pause(vector_t scr_size);
 void render_frame(tetris_t *hub, vector_t src);
 void render_board(tetris_t *hub, vector_t src);
 void render_block(tetris_t *hub, vector_t dest, vector_t oft);
 void render_tetrimino(tetris_t *hub, vector_t src);
 void render_game_info(tetris_t *hub, vector_t pos);
+void render_next_tetrimino(tetris_t *hub, vector_t pos);
 
 // ACTIONS
 void key_handlers(tetris_t *hub, int key);
