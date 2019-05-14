@@ -15,7 +15,7 @@ The tetriminos files are composed in the following way:
 *You can now create your own tetrimino by placing your file in the tetriminos folder adding `.tetrimino` at the end of its name*
 
 #### Flags
-There are multiple optional flags that are available, you can take a look at the `.legend` file to learn more, or simply execute this command (if the source files are already compiled):
+Multiple optional flags are available, you can take a look at the `.legend` file to learn more, or simply execute this command (if the source files are already compiled):
 
 `./tetris --help`
 
